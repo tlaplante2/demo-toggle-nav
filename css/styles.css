@@ -2,3 +2,107 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+
+/* ********* nav and header ******** */
+/* step 1. style nav for when it shows, starting with the mobile view and then hide it */
+header {
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between; /* Seperated RWD, Li, and button */
+}
+
+.toggle-btn {
+    border: none;
+    background-color: white;
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+}
+
+nav {
+    flex: 1 0 100%; /* yes to grow, no to shrink, width 100% */
+}
+
+.menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block; /*allows the clickable area to take up the full width of the li  */
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: .25rem;
+}
+
+.menu li {
+    line-height: 2.5rem; /* gives equal space above and below li */
+    text-align: center;
+    margin-bottom: .5rem; /* space between clickable links */
+}
+
+/* step 2. Hide the nav for the default screen. This can be done using display: none but 
+display:none will not take a transition property  */
+
+header nav {
+    max-height: 0; /* collapses nav, but leaves links*/
+    overflow: hidden; /* hides overflowing nav */
+    transition: max-height 0.7s ease-in-out;
+}
+
+/* step 3. create a special class in css that will show the nav. This class only
+exists in the CSS file for now. do not add to the HTML markup. The JS file will add this class
+to html for us, when the button is clicked   */
+
+.show-nav {
+    max-height: 22.5vh; /* since we hid the height above for the nav, this shows it, 
+    also changes transition speed based on how large the vh is */
+}
+
+
+/* ******* section *******  */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+}
+
+section h2 {
+    color: white;
+    font-size: 3.157rem;
+}
+
+/* ******* default screen done *******  */
+
+/* ******* Step 4. Style wider screen where nav is shown by default. Hide toggle button, style nav horizontaly*******  */
+
+@media screen and (min-width: 39.0625rem) {
+    .toggle-btn {
+        display: none;
+    }
+    /* we want to see the nav by default without using button. so give height back  */
+    header nav {
+        max-height: initial;
+        overflow: visible;
+        flex: 0 0 auto; /* no grow, no shrink, auto default width. moves to the right*/
+    }
+    /* style menu links horizontally  */
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul.menu a {
+        padding: 0 1rem; /* adds padding around a in the nav */
+    }
+
+}
+
